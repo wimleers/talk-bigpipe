@@ -1,0 +1,268 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>Best Practices for Drupal Performance Tuning — BigPipe</title>
+
+		<meta name="author" content="Wim Leers">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+		<link rel="stylesheet" href="src/reveal/css/reveal.css">
+		<link rel="stylesheet" href="src/reveal/css/theme/black.css" id="theme">
+
+		<!-- Code syntax highlighting -->
+		<link rel="stylesheet" href="src/reveal/lib/css/zenburn.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'src/reveal/css/print/pdf.css' : 'src/reveal/css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="src/reveal/lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<div class="slides">
+				<section>
+					<h2>Best Practices for Drupal Performance Tuning</h2>
+					<ul>
+						<li>BigPipe
+						<li>Dynamic Page Cache
+						<li>Page Cache
+						<li>Varnish/CDN
+					</ul>
+					<hr>
+					<p>Wim Leers<br><small style="vertical-align: baseline"><a href="https://twitter.com/wimleers">@wimleers</a><br><a href="http://wimleers.com/">wimleers.com</a></small></p>
+					</p>
+				</section>
+
+				<section>
+					<section>
+						<p>Front end</p>
+						<p>↕</p>
+						<p>Back end</p>
+					</section>
+
+					<section>
+						<p><strong>Front end:</strong> CSS, JS, images, fonts … (assets)</p>
+						<p>↕</p>
+						<p><strong>Back end:</strong> HTML</p>
+					</section>
+				
+					<section>
+						<p>80–90% of time is spent on front end</p>
+						<p>⬇</p>
+						<p>Bigger speed gains on front end than on back end</p>
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<p>Performance</p>
+						<p>↕</p>
+						<p>Perceived performance</p>
+					</section>
+					<section>
+						<ol>
+							<li>TTFB = Time to First Byte</li>
+							<li>TTAP = Time to Assets Prefetching</li>
+							<li>TTI = Time to Interact</li>
+							<li>Page load time = total load time: until finished loading</li>
+						</ol>
+					</section>
+					<section>
+						<p>First, optimize front end in typical way:</p>
+						<ul>
+							<li>optimize images</li>
+							<li>minify &amp; aggregate CSS/JS</li>
+							<li>fewer HTTP requests <small>(<a href="http://calendar.perfplanet.com/2015/forgo-js-packaging-not-so-fast/">even for HTTP/2</a> in 2016)</small></li>
+							<li>…</li>
+						</ol>
+					</section>
+					<section>
+						<p>… but if the back end is already slow, the front end alone cannot make it fast.</p>
+					</section>
+					<section>
+						<p><em>Intersection</em> of front-end &amp; back-end performance</p>
+					</section>
+				</section>
+
+				<section>
+					<h2>0. Uncached/regular </h2>
+					<p><em>Drupal needs to lots of things before replying</em></p>
+					<hr>
+					<p>TTFB, TTAP, TTI: typically 100s of ms (~ back end)</p>
+				</section>
+				<section>
+					<h2>1. Page cache</h2>
+					<p><em>Drupal needs to do almost nothing before replying</em></p>
+					<hr>
+					<ul>
+						<li>TTFB: ms <small>(&lt;10 ms)</small></li>
+						<li>TTAP: low 10s of ms</li>
+						<li>TTI: 100s of ms <small>(~ front-end code)</small></li>
+					</ul>
+					<hr>
+					<ul>
+						<li>For anonymous users <small>(unpersonalized pages)</small></li>
+						<li>Enabled by default in Drupal 8</li>
+					</ul>
+					<hr>
+					<small><a href="http://wimleers.com/blog/drupal-8-page-caching-enabled-by-default">http://wimleers.com/blog/drupal-8-page-caching-enabled-by-default</a></small>
+				</section>
+				
+				<section>
+					<h2>2. Dynamic Page cache</h2>
+					<p><em>Drupal needs to several things before replying</em></p>
+					<hr>
+					<ul>
+						<li>TTFB: 10s to low 100s of ms <small>(~ back-end code)</small></li>
+						<li>TTAP: 100s of ms</li>
+						<li>TTI: high 100s of ms <small>(~ back-end + front-end code)</small></li>
+					</ul>
+					<hr>
+					<ul>
+						<li>For authenticated users <small>(personalized pages)</small></li>
+						<li>Enabled by default in Drupal 8</li>
+					</ul>
+					<hr>
+					<small><a href="http://wimleers.com/article/drupal-8-dynamic-page-cache">http://wimleers.com/article/drupal-8-dynamic-page-cache</a></small>
+				</section>
+
+				<section>
+					<section>
+						<h2>3. BigPipe</h2>
+						<p><em>Drupal needs to do almost nothing before replying, BUT continues to do things afterwards</em></p>
+						<hr>
+						<ul>
+							<li>TTFB: low 10s of ms <small>(~ server, typical: 15-40)</small></li>
+							<li>TTAP: 10s of ms</li>
+							<li>TTI: low 100s of ms <small>(~ front end)</small></li>
+						</ul>
+						<hr>
+						<ul>
+							<li>For authenticated users <small>(personalized pages)</small></li>
+							<li>Candidate for Drupal 8.1 or 8.2</li>
+						</ul>
+						<hr>
+						<small><a href="https://www.drupal.org/project/big_pipe">drupal.org/project/big_pipe</a></small>
+					</section>
+					<section>
+						<video src="SingleFlush versus BigPipe.mp4" controls>
+					</section>
+				</section>
+
+				
+				<section>
+					<section>
+						<h2>How?</h2>
+						<p><small>At a high level</small></p>
+					</section>
+					<section>
+						<h3>Cacheability metadata in Drupal 8</h3>
+						<ul>
+							<li>Cache tags <small class="fragment">(data dependencies)</small>
+							<li>Cache contexts <small class="fragment">(context dependencies)</small>
+							<li>Cache max-age <small class="fragment">(time dependencies)</small>
+						</ul>
+						<div class="fragment">
+							<p>+</p>
+							<p>Cacheability bubbled during rendering!</p>
+						</div>
+					</section>
+					<section>
+						<h3>Cache tags + reverse proxy</h3>
+						<p>Cache tags: efficient invalidation of Varnish/CDN</p>
+						<p><small>Page cache = reverse proxy ⇒ tested!</small></p>
+						<p><small><a href="http://wimleers.com/talk/caching-at-the-edge-cdns-for-everyone">http://wimleers.com/talk/caching-at-the-edge-cdns-for-everyone</a></small></p>
+					</section>
+					<section>
+						<h3>Improved Render API</h3>
+						<ul>
+							<li>rendering in isolation: "lazy builders"</li>
+							<li>auto-placeholdering
+								<pre><code>  renderer.config:
+     auto_placeholder_conditions:
+       max-age: 0
+       contexts: ['session', 'user']
+       tags: []</code></pre>
+							</li>
+						</ol>
+					</section>
+					<section>
+						<p>renderable in isolation<br>
+							+<br>
+							poor cacheability<br>
+							⬇<br>
+							deferred rendering via BigPipe
+						</p>
+					</section>
+					<section>
+						<p>BigPipe details: Acquia webinar in 2 weeks:</p>
+						<small><a href="https://www.acquia.com/resources/webinars/bigpipe-architecture-behind-fastest-version-drupal-yet"><q>BigPipe: The Architecture Behind the Fastest Version of Drupal Yet</q></a></small>
+					</section>
+				</section>
+				
+				<!-- Wim + Fabian -->
+				<section data-transition="zoom" >
+					<h2>Questions?</h2>
+					<h4 style="margin-top: 2em">Try BigPipe</h4>
+					<a href="https://www.drupal.org/project/big_pipe">drupal.org/project/big_pipe</a>
+					<h4 style="margin-top: 2em">Links</h4>
+					<p><small><a href="http://wimleers.com/blog/drupal-8-page-caching-enabled-by-default">http://wimleers.com/blog/drupal-8-page-caching-enabled-by-default</a></small>
+					<br>
+					<small><a href="http://wimleers.com/article/drupal-8-dynamic-page-cache">http://wimleers.com/article/drupal-8-dynamic-page-cache</a></small>
+					<br>
+					<small><a href="http://wimleers.com/talk/caching-at-the-edge-cdns-for-everyone">http://wimleers.com/talk/caching-at-the-edge-cdns-for-everyone</a></small>
+					</p>
+				</section>
+
+			</div>
+
+		</div>
+
+		<script src="src/reveal/lib/js/head.min.js"></script>
+		<script src="src/reveal/js/reveal.js"></script>
+
+		<script>
+
+			// Full list of configuration options available at:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+				// Optional reveal.js plugins
+				dependencies: [
+					{ src: 'src/reveal/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'src/reveal/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'src/reveal/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'src/reveal/plugin/highlight/highlight.js', async: true, condition: function() { return !!document.querySelector( 'pre code' ); }, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'src/reveal/plugin/zoom-js/zoom.js', async: true },
+					{ src: 'src/reveal/plugin/notes/notes.js', async: true }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>
