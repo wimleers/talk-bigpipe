@@ -268,6 +268,44 @@
 					</section>
 				</section>
 				
+				<section>
+					<section>
+						<h2>3. Architecture</h2>
+						<p>How Drupal is able to do this</p>
+					</section>
+					<section>
+						<ol>
+							<li>Cacheability&nbsp;metadata<br><small>tags, contexts, max-age + bubbling</small></li>
+							<li>Isolated rendering<br><small><code>#lazy_builder</code> callbacks</small></li>
+							<li>Auto-placeholdering<br><small>if poorly cacheable <em>and</em> renderable in isolation</small></li>
+							<li>Placeholder&nbsp;strategies
+								<br><small>default = replace before sending complete response (1 flush)</small>
+								<br><small>BigPipe = replace after sending unpersonalized response (N flushes)</small>
+							</li>
+						</ol>
+					</section>
+					<section>
+						<p>BigPipe sends:</p>
+						<ol>
+							<li>initial page directly from Dynamic&nbsp;Page&nbsp;Cache</li>
+							<li>rendered BigPipe placeholders, in DOM order</li>
+						</ol>
+					</section>
+					<section>
+						<a href="d8_render_pipeline.pdf"><img src="src/images/d8_render_pipeline-thumbnail.png" style="border:none"></a>
+						<p><small><a href="https://www.drupal.org/developing/api/8/render/pipeline">d.o/developing/api/8/render/pipeline</a> + <a href="http://wimleers.com/talk/drupal-8-render-pipeline">wimleers.com/talk/drupal-8-render-pipeline</a></small></p>
+					</section>
+					<section>
+						<h4>Edge cases</h4>
+						<p>Page is sent in multiple flushes for:</p>
+						<ul>
+							<li class="fragment">Non-HTML placeholders <sup><small>form action URL …</small></sup></li>
+							<li class="fragment"><em>All</em> placeholders if JavaScript off</li>
+						</ul>
+						<p class="fragment">⬇<br>BigPipe <em>always</em> is an improvement</p>
+					</section>
+				</section>
+
 				<section data-transition="zoom" >
 					<h2>Questions?</h2>
 					<h4 style="margin-top: 2em">Try BigPipe</h4>
