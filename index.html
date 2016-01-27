@@ -106,48 +106,57 @@
 				</section>
 
 				<section>
-					<h2>0. Uncached/regular </h2>
-					<p><em>Drupal needs to lots of things before replying</em></p>
-					<hr>
-					<p>TTFB, TTAP, TTI: typically 100s of ms (~ back end)</p>
-				</section>
-				<section>
-					<h2>1. Page cache</h2>
-					<p><em>Drupal needs to do almost nothing before replying</em></p>
-					<hr>
-					<ul>
-						<li>TTFB: ms <small>(&lt;10 ms)</small></li>
-						<li>TTAP: low 10s of ms</li>
-						<li>TTI: 100s of ms <small>(~ front-end code)</small></li>
-					</ul>
-					<hr>
-					<ul>
-						<li>For anonymous users <small>(unpersonalized pages)</small></li>
-						<li>Enabled by default in Drupal 8</li>
-					</ul>
-					<hr>
-					<small><a href="http://wimleers.com/blog/drupal-8-page-caching-enabled-by-default">http://wimleers.com/blog/drupal-8-page-caching-enabled-by-default</a></small>
-				</section>
+					<section>
+						<p>Comparing</p>
+						<ol>
+							<li>Uncached/regular</li>
+							<li>Page Cache</li>
+							<li>Dynamic Page Cache</li>
+							<li>BigPipe</li>
+						</ol>
+					</section>
+					<section>
+						<h2>0. Uncached/regular </h2>
+						<p><em>Drupal needs to lots of things before replying</em></p>
+						<hr>
+						<p>TTFB, TTAP, TTI: typically 100s of ms (~ back end)</p>
+					</section>
+					<section>
+						<h2>1. Page cache</h2>
+						<p><em>Drupal needs to do almost nothing before replying</em></p>
+						<hr>
+						<ul>
+							<li>TTFB: ms <small>(&lt;10 ms)</small></li>
+							<li>TTAP: low 10s of ms</li>
+							<li>TTI: 100s of ms <small>(~ front-end code)</small></li>
+						</ul>
+						<hr>
+						<ul>
+							<li>For anonymous users <small>(unpersonalized pages)</small></li>
+							<li>Enabled by default in Drupal 8</li>
+						</ul>
+						<hr>
+						<small><a href="http://wimleers.com/blog/drupal-8-page-caching-enabled-by-default">http://wimleers.com/blog/drupal-8-page-caching-enabled-by-default</a></small>
+					</section>
 				
-				<section>
-					<h2>2. Dynamic Page cache</h2>
-					<p><em>Drupal needs to several things before replying</em></p>
-					<hr>
-					<ul>
-						<li>TTFB: 10s to low 100s of ms <small>(~ back-end code)</small></li>
-						<li>TTAP: 100s of ms</li>
-						<li>TTI: high 100s of ms <small>(~ back-end + front-end code)</small></li>
-					</ul>
-					<hr>
-					<ul>
-						<li>For authenticated users <small>(personalized pages)</small></li>
-						<li>Enabled by default in Drupal 8</li>
-					</ul>
-					<hr>
-					<small><a href="http://wimleers.com/article/drupal-8-dynamic-page-cache">http://wimleers.com/article/drupal-8-dynamic-page-cache</a></small>
-				</section>
+					<section>
+						<h2>2. Dynamic Page cache</h2>
+						<p><em>Drupal needs to several things before replying</em></p>
+						<hr>
+						<ul>
+							<li>TTFB: 10s to low 100s of ms <small>(~ back-end code)</small></li>
+							<li>TTAP: 100s of ms</li>
+							<li>TTI: high 100s of ms <small>(~ back-end + front-end code)</small></li>
+						</ul>
+						<hr>
+						<ul>
+							<li>For authenticated users <small>(personalized pages)</small></li>
+							<li>Enabled by default in Drupal 8</li>
+						</ul>
+						<hr>
+						<small><a href="http://wimleers.com/article/drupal-8-dynamic-page-cache">http://wimleers.com/article/drupal-8-dynamic-page-cache</a></small>
+					</section>
 
-				<section>
 					<section>
 						<h2>3. BigPipe</h2>
 						<p><em>Drupal needs to do almost nothing before replying, BUT continues to do things afterwards</em></p>
@@ -166,7 +175,7 @@
 						<small><a href="https://www.drupal.org/project/big_pipe">drupal.org/project/big_pipe</a></small>
 					</section>
 					<section>
-						<video src="SingleFlush versus BigPipe.mp4" controls>
+						<video src="src/videos/SingleFlush versus BigPipe.mp4" controls>
 					</section>
 				</section>
 
@@ -212,11 +221,18 @@
 							+<br>
 							poor cacheability<br>
 							⬇<br>
-							deferred rendering via BigPipe
+							auto-placeholdered: deferred rendering via BigPipe
 						</p>
 					</section>
 				</section>
 				
+				<section>
+					<figure>
+						<img src="src/images/BigPipe.gif">
+						<figcaption><small>Animation by <a href="https://twitter.com/shawnmmccabe">@shawnmmccabe</a></small></figcaption>
+					</figure>
+				</section>
+
 				<section>
 					<section>
 						<h2>How to use</h2>
