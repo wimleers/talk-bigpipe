@@ -299,11 +299,11 @@
 					</section>
 					<section id="architecture--edge-cases">
 						<h4>Edge cases</h4>
-						<p>Page is sent in multiple flushes for:</p>
 						<ul>
 							<li class="fragment">Non-HTML placeholders <sup><small>form action URL …</small></sup></li>
 							<li class="fragment"><em>All</em> placeholders if JavaScript off</li>
 						</ul>
+						<p class="fragment">⬇<br>Replaced without JavaScript</p>
 						<p class="fragment">⬇<br>BigPipe <em>always</em> is an improvement</p>
 					</section>
 				</section>
@@ -476,23 +476,24 @@ function current_temp_lazy_builder($country, $city) {
 
 				<section data-transition="zoom" id="end">
 					<h2>Questions?</h2>
-					<h4 style="margin-top: 1.5em">Try BigPipe</h4>
-					<a href="https://www.drupal.org/project/big_pipe_demo">drupal.org/project/big_pipe_demo</a>
-					<h4 style="margin-top: 1.5em">Links</h4>
-					<p><small><a href="https://www.drupal.org/developing/api/8/render/pipeline">d.o/developing/api/8/render/pipeline</a> + <a href="https://www.drupal.org/developing/api/8/render/arrays/cacheability">d.o/developing/api/8/render/arrays/cacheability</a></small>
-					<br>
-					<small><a href="https://www.drupal.org/developing/api/8/cache">d.o/developing/api/8/cache</a></small>
-					<br>
-					<small><a href="https://www.drupal.org/project/renderviz">d.o/project/renderviz</a> + <a href="https://www.drupal.org/project/refreshless">d.o/project/refreshless</a></small>
-					<br>
-					<small><a href="http://wimleers.com/blog/drupal-8-page-caching-enabled-by-default">wimleers.com/blog/drupal-8-page-caching-enabled-by-default</a></small>
-					<br>
-					<small><a href="http://wimleers.com/article/drupal-8-dynamic-page-cache">wimleers.com/article/drupal-8-dynamic-page-cache</a></small>
-					<br>
-					<small><a href="http://wimleers.com/blog/drupal-8.1-bigpipe-module-experimental">wimleers.com/blog/drupal-8.1-bigpipe-module-experimental</a></small>
-					<br>
-					<small><a href="http://wimleers.com/talk/caching-at-the-edge-cdns-for-everyone">wimleers.com/talk/caching-at-the-edge-cdns-for-everyone</a></small>
-					</p>
+					<h4 style="margin-top: 1.5em">Try BigPipe: <a href="https://www.drupal.org/project/big_pipe_demo">d.o/project/big_pipe_demo</a></h4>
+					<table style="font-size: 90%; margin-top: 1.5em">
+						<tbody style="border-top: 1px solid">
+							<tr><td rowspan="3">docs</td><td><small><a href="https://www.drupal.org/developing/api/8/render/pipeline">d.o/developing/api/8/render/pipeline</a></small></td></tr>
+							<tr><td><small><a href="https://www.drupal.org/developing/api/8/render/arrays/cacheability">d.o/developing/api/8/render/arrays/cacheability</a></small></td></tr>
+							<tr><td><small><a href="https://www.drupal.org/developing/api/8/cache">d.o/developing/api/8/cache</a></small></td></tr>
+						</tbody>
+						<tbody>
+							<tr><td rowspan="2">modules</td><td><small><a href="https://www.drupal.org/project/renderviz">d.o/project/renderviz</a></small></td></tr>
+							<tr><td><small><a href="https://www.drupal.org/project/refreshless">d.o/project/refreshless</a></small></td></tr>
+						</tbody>
+						<tbody>
+							<tr><td rowspan="4">reading</td><td><small><a href="http://wimleers.com/blog/drupal-8-page-caching-enabled-by-default">wimleers.com/blog/drupal-8-page-caching-enabled-by-default</a></small></td></tr>
+							<tr><td><small><a href="http://wimleers.com/article/drupal-8-dynamic-page-cache">wimleers.com/article/drupal-8-dynamic-page-cache</a></small></td></tr>
+							<tr><td><small><a href="http://wimleers.com/blog/drupal-8.1-bigpipe-module-experimental">wimleers.com/blog/drupal-8.1-bigpipe-module-experimental</a></small></td></tr>
+							<tr><td><small><a href="http://wimleers.com/talk/caching-at-the-edge-cdns-for-everyone">wimleers.com/talk/caching-at-the-edge-cdns-for-everyone</a></small></td></tr>
+						</tbody>
+					</table>
 				</section>
 
 			</div>
