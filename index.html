@@ -38,13 +38,13 @@
 		<div class="reveal">
 
 			<div class="slides">
-				<section>
+				<section id="start">
 					<h1>BigPipe</h1>
 					<p>Wim Leers<br><small style="vertical-align: baseline"><a href="https://twitter.com/wimleers">@wimleers</a><br><a href="http://wimleers.com/">wimleers.com</a></small></p>
 					</p>
 				</section>
 				
-				<section>
+				<section id="overview">
 					<ol>
 						<li>Introduction</li>
 						<li>How to use</li>
@@ -55,19 +55,19 @@
 				</section>
 
 				<section>
-					<section>
+					<section id="intro--front-vs-back-impact-1">
 						<p>Front end</p>
 						<p>↕</p>
 						<p>Back end</p>
 					</section>
 
-					<section>
+					<section id="intro--front-vs-back-impact-2">
 						<p><strong>Front end:</strong> CSS, JS, images, fonts … (assets)</p>
 						<p>↕</p>
 						<p><strong>Back end:</strong> HTML</p>
 					</section>
 				
-					<section>
+					<section id="intro--front-vs-back-impact-3">
 						<p>80–90% of time is spent on front end</p>
 						<p>⬇</p>
 						<p>Bigger speed gains on front end than on back end</p>
@@ -75,12 +75,12 @@
 				</section>
 
 				<section>
-					<section>
+					<section id="intro--front-vs-back-analysis-1">
 						<p>Performance</p>
 						<p>↕</p>
 						<p>Perceived performance</p>
 					</section>
-					<section>
+					<section id="intro--front-vs-back-analysis-2">
 						<ol>
 							<li>TTFB = Time to First Byte</li>
 							<li>TTAP = Time to Assets Prefetching</li>
@@ -88,7 +88,7 @@
 							<li>Page load time = total load time: until finished loading</li>
 						</ol>
 					</section>
-					<section>
+					<section id="intro--front-vs-back-analysis-3">
 						<p>First, optimize front end in typical way:</p>
 						<ul>
 							<li>optimize images</li>
@@ -97,16 +97,16 @@
 							<li>…</li>
 						</ol>
 					</section>
-					<section>
+					<section id="intro--front-vs-back-analysis-4">
 						<p>… but if the back end is already slow, the front end alone cannot make it fast.</p>
 					</section>
-					<section>
+					<section id="intro--front-vs-back-analysis-5">
 						<p><em>Intersection</em> of front-end &amp; back-end performance</p>
 					</section>
 				</section>
 
 				<section>
-					<section>
+					<section id="intro--comparing">
 						<p>Comparing</p>
 						<ol>
 							<li>Uncached/regular</li>
@@ -115,13 +115,13 @@
 							<li>BigPipe</li>
 						</ol>
 					</section>
-					<section>
+					<section id="intro--comparing--uncached">
 						<h2>0. Uncached/regular </h2>
 						<p><em>Drupal needs to lots of things before replying</em></p>
 						<hr>
 						<p>TTFB, TTAP, TTI: typically 100s of ms (~ back end)</p>
 					</section>
-					<section>
+					<section id="intro--comparing--page-cache">
 						<h2>1. Page cache</h2>
 						<p><em>Drupal needs to do almost nothing before replying</em></p>
 						<hr>
@@ -139,7 +139,7 @@
 						<small><a href="http://wimleers.com/blog/drupal-8-page-caching-enabled-by-default">http://wimleers.com/blog/drupal-8-page-caching-enabled-by-default</a></small>
 					</section>
 				
-					<section>
+					<section id="intro--comparing--dynamic-page-cache">
 						<h2>2. Dynamic Page cache</h2>
 						<p><em>Drupal needs to several things before replying</em></p>
 						<hr>
@@ -157,7 +157,7 @@
 						<small><a href="http://wimleers.com/article/drupal-8-dynamic-page-cache">http://wimleers.com/article/drupal-8-dynamic-page-cache</a></small>
 					</section>
 
-					<section>
+					<section id="intro--comparing--bigpipe">
 						<h2>3. BigPipe</h2>
 						<p><em>Drupal needs to do almost nothing before replying, BUT continues to do things afterwards</em></p>
 						<hr>
@@ -174,18 +174,18 @@
 						<hr>
 						<small><a href="https://www.drupal.org/project/big_pipe">drupal.org/project/big_pipe</a></small>
 					</section>
-					<section>
+					<section id="intro--comparing--bigpipe-video">
 						<video src="src/videos/SingleFlush versus BigPipe.mp4" controls>
 					</section>
 				</section>
 
 				
 				<section>
-					<section>
+					<section id="intro--how">
 						<h2>How?</h2>
 						<p><small>At a high level</small></p>
 					</section>
-					<section>
+					<section id="intro--how--cacheability-metadata">
 						<h3>Cacheability metadata in Drupal 8</h3>
 						<ul>
 							<li>Cache tags <small class="fragment">(data dependencies)</small>
@@ -197,13 +197,13 @@
 							<p>Cacheability bubbled during rendering!</p>
 						</div>
 					</section>
-					<section>
+					<section id="intro--how--cache-tags-reverse-proxy">
 						<h3>Cache tags + reverse proxy</h3>
 						<p>Cache tags: efficient invalidation of Varnish/CDN</p>
 						<p><small>Page cache = reverse proxy ⇒ tested!</small></p>
 						<p><small><a href="http://wimleers.com/talk/caching-at-the-edge-cdns-for-everyone">http://wimleers.com/talk/caching-at-the-edge-cdns-for-everyone</a></small></p>
 					</section>
-					<section>
+					<section id="intro--how--improved-render">
 						<h3>Improved Render API</h3>
 						<ul>
 							<li>rendering in isolation: "lazy builders"</li>
@@ -216,7 +216,7 @@
 							</li>
 						</ol>
 					</section>
-					<section>
+					<section id="intro--how--conclusion">
 						<p>renderable in isolation<br>
 							+<br>
 							poor cacheability<br>
@@ -226,7 +226,7 @@
 					</section>
 				</section>
 				
-				<section>
+				<section id="intro--how--bigpipe-visualized">
 					<figure>
 						<img src="src/images/BigPipe.gif">
 						<figcaption><small>Animation by <a href="https://twitter.com/shawnmmccabe">@shawnmmccabe</a></small></figcaption>
@@ -234,16 +234,16 @@
 				</section>
 
 				<section>
-					<section>
+					<section id="how">
 						<h2>2. How to use</h2>
 						<p>How to use BigPipe on <em>your</em> Drupal site</p>
 					</section>
-					<section>
+					<section id="how---installation">
 						<p>Install BigPipe module — zero configuration</p>
 						<p><small>Drupal 8.1: included as experimental module!</small></p>
 						<p><small>Drupal 8.0: <a href="https://www.drupal.org/project/big_pipe">d.o/project/big_pipe</a></small></p>
 					</section>
-					<section>
+					<section id="how--demo">
 						<p>Try BigPipe demo</p>
 						<ul>
 							<li><a href="http://bigpipe.demo.wimleers.com/">bigpipe.demo.wimleers.com</a>, locally or <a href="https://simplytest.me/project/big_pipe_demo">simplytest.me</a></li>
@@ -252,14 +252,14 @@
 						</ul>
 						<p><small><a href="https://www.drupal.org/project/big_pipe_demo">d.o/project/big_pipe_demo</a></small></p>
 					</section>
-					<section>
+					<section id="how--try">
 						<p>Just <em>try</em></p>
 					</section>
-					<section>
+					<section id="how--questions">
 						<p>"Jumpiness"? → make CSS more robust<sup class="fragment"><small>also great for 3G!</small></sup></p>
 						<p class="fragment">Slow code not BigPipe'd? → simulate in BigPipe demo <sup class="fragment"><small>then fix</small></p>
 					</section>
-					<section>
+					<section id="how--conclusion">
 						<p>So:</p>
 						<ol>
 							<li>Play<br><small>observe the difference</small></li>
@@ -271,11 +271,11 @@
 				</section>
 				
 				<section>
-					<section>
+					<section id="architecture">
 						<h2>3. Architecture</h2>
 						<p>How Drupal is able to do this</p>
 					</section>
-					<section>
+					<section id="architecture--requirements">
 						<ol>
 							<li>Cacheability&nbsp;metadata<br><small>tags, contexts, max-age + bubbling</small></li>
 							<li>Isolated rendering<br><small><code>#lazy_builder</code> callbacks</small></li>
@@ -286,18 +286,18 @@
 							</li>
 						</ol>
 					</section>
-					<section>
+					<section id="architecture--conceptually">
 						<p>BigPipe sends:</p>
 						<ol>
 							<li>initial page directly from Dynamic&nbsp;Page&nbsp;Cache</li>
 							<li>rendered BigPipe placeholders, in DOM order</li>
 						</ol>
 					</section>
-					<section>
+					<section id="architecture--render-pipeline">
 						<a href="d8_render_pipeline.pdf"><img src="src/images/d8_render_pipeline-thumbnail.png" style="border:none"></a>
 						<p><small><a href="https://www.drupal.org/developing/api/8/render/pipeline">d.o/developing/api/8/render/pipeline</a> + <a href="http://wimleers.com/talk/drupal-8-render-pipeline">wimleers.com/talk/drupal-8-render-pipeline</a></small></p>
 					</section>
-					<section>
+					<section id="architecture--edge-cases">
 						<h4>Edge cases</h4>
 						<p>Page is sent in multiple flushes for:</p>
 						<ul>
@@ -309,29 +309,29 @@
 				</section>
 
 				<section>
-					<section>
+					<section id="code">
 						<h2>4. Code</h2>
 						<p>How you can make your code BigPipe-compatible</p>
 					</section>
-					<section>
+					<section id="code--cacheability">
 						<h2>4.A Cacheability metadata</h3>
 						<p>To know when something is uncacheable/personalized.</p>
 					</section>
-					<section>
+					<section id="code--cacheability--thought-process">
 						<h3>In practice</h3>
 						<p>Try to make this thought process a habit:</p>
 					</section>
-					<section>
+					<section id="code--cacheability--thought-process--1">
 						<h3>1.</h3>
 						<blockquote>I'm rendering something. That means I must think of cacheability!</blockquote>
 					</section>
-					<section>
+					<section id="code--cacheability--thought-process--2">
 						<h3>2.</h3>
 						<blockquote>Is this something that's expensive to render, and therefore is worth caching?</blockquote>
 						<p>↪︎ If "yes": <strong>cache keys</strong>.</p>
 						<pre class="fragment" style="margin-top: 3em; width: 70%"><code class="php">$build['#cache']['keys'] = ['node', 5, 'teaser'];</code></pre>
 					</section>
-					<section>
+					<section id="code--cacheability--thought-process--3">
 						<h3>3.</h3>
 						<blockquote>Does the representation of the thing I'm rendering vary per combination of permissions, per URL, per interface language, per … something?</blockquote>
 						<p>↪︎ If "yes": <strong>cache contexts</strong>.</p>
@@ -340,7 +340,7 @@ $build['#cache']['contexts'][] = 'url';
 </code></pre>
 						<p class="fragment"><small>~ HTTP's <code>Vary</code> header</small></p>
 					</section>
-					<section>
+					<section id="code--cacheability--thought-process--4">
 						<h3>4.</h3>
 						<blockquote>What causes the representation of the thing I'm rendering become outdated?</blockquote>
 						<p>↪︎ If "yes": <strong>cache tags</strong>.</p>
@@ -349,14 +349,14 @@ $build['#cache']['tags'][] = 'user:3';
 $build['#cache']['tags'][] = 'taxonomy_term:23';
 </code></pre>
 					</section>
-					<section>
+					<section id="code--cacheability--thought-process--5">
 						<h3>5.</h3>
 						<blockquote>When does the representation of the thing I'm rendering become outdated?</blockquote>
 						<p>↪︎ If "yes": <strong>cache max-age</strong>.</p>
 						<pre class="fragment" style="margin-top: 3em; width: 70%"><code class="php">$build['#cache']['max-age'] = Cache::PERMANENT;</code></pre>
 						<p class="fragment"><small>~ HTTP's <code>Cache-Control: max-age</code> header</small></p>
 					</section>
-					<section>
+					<section id="code--cacheability--interface">
 						<p>All relevant objects provide cacheability metadata!</p>
 						<pre><code class="php">interface CacheableDependencyInterface {
   public function getCacheContexts();
@@ -373,11 +373,11 @@ $build['#cache']['tags'][] = 'taxonomy_term:23';
 							</ul>
 						</div>
 					</section>
-					<section>
+					<section id="code--renderable-in-isolation">
 						<h2>4.B Renderable in isolation</h3>
 						<p>To be able to defer rendering via BigPipe.</p>
 					</section>
-					<section>
+					<section id="code--renderable-in-isolation--example-uncacheable">
 						<h3>Typical: uncacheable, always slow</h3>
 						<pre class="php"><code>// Drupal 7.
 function current_temperature() {
@@ -397,7 +397,7 @@ function current_temperature() {
 </code></pre>
 					<p class="fragment"><em>Still</em> runs always</p>
 					</section>
-					<section>
+					<section id="code--renderable-in-isolation--example-cacheable-not-isolated">
 						<h3>Better: render cacheable</h3>
 						<pre class="php"><code>function current_temperature() {
  return [
@@ -420,7 +420,7 @@ function current_temp_pre_render($build) {
 						<p class="fragment"><code>temp_from_satellite()</code> runs <em>only</em> if cache miss</p>
 						<p class="fragment"><em>But</em> not isolated <sup><small>(can use anything in <code>$build</code>)</small></sup></p>
 					</section>
-					<section>
+					<section id="code--renderable-in-isolation--example-cacheable-isolated">
 						<h3>Best: render cacheable &amp; isolated</h3>
 						<pre class="php"><code>function current_temperature() {
  return [
@@ -443,7 +443,7 @@ function current_temp_lazy_builder($country, $city) {
 						<p class="fragment"><em>All</em> calculations happen in the callback <sup><small>(including <code>LatLong</code>)</small></sup></p>
 						<p class="fragment">Isolated ⇒ deferable ⇒ BigPipe</p>
 					</section>
-					<section>
+					<section id="code--renderviz">
 						<h3>Developer tool: renderviz</h3>
 						<p>Visualizes cacheability metadata</p>
 						<img src="src/images/renderviz-prototype.png" style="height: 40vh">
@@ -452,10 +452,10 @@ function current_temp_lazy_builder($country, $city) {
 				</section>
 
 				<section>
-					<section>
+					<section id="other">
 						<h2>5. Other possibilities</h2>
 					</section>
-					<section>
+					<section id="other--examples">
 						<ul>
 							<li>More placeholder strategies, such as <strong>ESI</strong></li>
 							<li><strong>Turbolinks</strong> <small>load difference between current &amp; next page</small></li>
@@ -474,7 +474,7 @@ function current_temp_lazy_builder($country, $city) {
 
 				</section>
 
-				<section data-transition="zoom" >
+				<section data-transition="zoom" id="end">
 					<h2>Questions?</h2>
 					<h4 style="margin-top: 1.5em">Try BigPipe</h4>
 					<a href="https://www.drupal.org/project/big_pipe_demo">drupal.org/project/big_pipe_demo</a>
