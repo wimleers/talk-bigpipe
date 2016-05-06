@@ -112,6 +112,19 @@
 					<section id="intro--front-vs-back-analysis-5">
 						<p><em>Intersection</em> of front-end &amp; back-end performance</p>
 					</section>
+					<section id="intro--front-vs-back-analysis-6">
+						<h4>Example</h4>
+						<table style="font-size: 80%">
+							<tr><td></td><td>BigPipe</td><td>Traditional</td></tr>
+							<tr><th>50 ms</th><td>Initial HTML</td><td>…</td></tr>
+							<tr><th>100 ms</th><td>More HTML</td><td>…</td></tr>
+							<tr><th>150 ms</th><td>More HTML</td><td>…</td></tr>
+							<tr><th>200 ms</th><td>More HTML</td><td>…</td></tr>
+							<tr><th>250 ms</th><td>Final HTML</td><td>ALL HTML</td></tr>
+						</table>
+						<p class="fragment">⬇<br>Page header visible after ~150 ms instead of ~350 ms</p>
+						<p class="fragment">⬇<br>Changed back end improves perceived performance</p>
+					</section>
 				</section>
 
 				<section>
@@ -287,7 +300,7 @@
 					<section id="architecture--requirements">
 						<ol>
 							<li>Cacheability&nbsp;metadata<br><small>tags, contexts, max-age + bubbling</small></li>
-							<li>Isolated rendering<br><small><code>#lazy_builder</code> callbacks</small></li>
+							<li>Isolated rendering<br><small><code>#lazy_builder</code> callbacks (guarantee isolation)</small></li>
 							<li>Auto-placeholdering<br><small>if poorly cacheable <em>and</em> renderable in isolation</small></li>
 							<li>Placeholder&nbsp;strategies
 								<br><small>default = replace before sending complete response (1 flush)</small>
@@ -305,6 +318,11 @@
 					<section id="architecture--render-pipeline">
 						<a href="d8_render_pipeline.pdf"><img src="src/images/d8_render_pipeline-thumbnail.png" style="border:none"></a>
 						<p><small><a href="https://www.drupal.org/developing/api/8/render/pipeline">d.o/developing/api/8/render/pipeline</a> + <a href="http://wimleers.com/talk/drupal-8-render-pipeline">wimleers.com/talk/drupal-8-render-pipeline</a></small></p>
+					</section>
+					<section id="architecture--infrastructure">
+						<p>No infrastructure needed!</p>
+						<p><small>(Just the ability to stream responses: no buffering.)</small></p>
+						<p class="fragment">⬇<br>For hobbyist &amp; enterprise!</p>
 					</section>
 					<section id="architecture--edge-cases">
 						<h4>Edge cases</h4>
