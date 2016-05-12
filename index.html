@@ -30,18 +30,24 @@
 		}
 	
 		.reveal section img.druplicon-fast-1,
-		.reveal section img.druplicon-fast-2 {
+		.reveal section img.druplicon-fast-2,
+		.reveal section img.druplicon-fast-3 {
 		    background: none;
 		    border: 0;
 		    position: relative;
 		    animation-iteration-count: infinite;
 		}
 		.reveal section img.druplicon-fast-1 {
-		    animation: mymovebpa 3s;
+		    animation: mymovebpa 2s;
 		    animation-iteration-count: infinite;
                 }
 		.reveal section img.druplicon-fast-2 {
-		    animation: mymovebpb 3s;
+		    animation: mymovebpb 2s;
+		    animation-iteration-count: infinite;
+                }
+	
+		.reveal section img.druplicon-fast-3 {
+		    animation: mymovebpc 2s;
 		    animation-iteration-count: infinite;
                 }
 		
@@ -51,13 +57,17 @@
 		}
 
 		@keyframes mymovebpa {
-		    from {top: -200px;}
-		    to {top: 600px;}
+		    from {top: -100px;}
+		    to {top: 800px;}
 		}
 		@keyframes mymovebpb {
 		    from {top: -300px;}
-		    to {top: 500px;}
+		    to {top: 600px;}
 		}
+
+		@keyframes mymovebpc {
+		    from {top: -400px;}
+		    to {top: 500px;}
 		</style>
 		
 		<!-- Printing and PDF exports -->
@@ -178,6 +188,7 @@
 						<div class="container" style="height: 500px; background: black; overflow: hidden;">
 							<img src="src/images/druplicon-small.png" height=80 class="druplicon-fast-1" style="translate(0px, -50px);"/>
 							<img src="src/images/druplicon-small.png" height=50 class="druplicon-fast-2" style="translate(0px, -100px);"/>
+							<img src="src/images/druplicon-small.png" height=40 class="druplicon-fast-3" style="translate(0px, -100px);"/>
 						</div>
 					</section>
 				</section>
