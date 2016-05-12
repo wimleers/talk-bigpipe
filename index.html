@@ -19,6 +19,45 @@
 		<!-- Code syntax highlighting -->
 		<link rel="stylesheet" href="src/reveal/lib/css/zenburn.css">
 
+
+		<style> 
+		.reveal section img.druplicon-slow {
+		    background: none;
+		    border: 0;
+		    position: relative;
+		    animation: mymove 3s;
+		    animation-iteration-count: infinite;
+		}
+	
+		.reveal section img.druplicon-fast-1,
+		.reveal section img.druplicon-fast-2 {
+		    background: none;
+		    border: 0;
+		    position: relative;
+		    animation-iteration-count: infinite;
+		}
+		.reveal section img.druplicon-fast-1 {
+		    animation: mymovebpa 3s;
+                }
+		.reveal section img.druplicon-fast-2 {
+		    animation: mymovebpb 5s;
+                }
+		
+		@keyframes mymove {
+		    from {top: -600px;}
+		    to {top: 500px;}
+		}
+
+		@keyframes mymovebpa {
+		    from {top: -200px;}
+		    to {top: 500px;}
+		}
+		@keyframes mymovebpb {
+		    from {top: -300px;}
+		    to {top: 500px;}
+		}
+		</style>
+		
 		<!-- Printing and PDF exports -->
 		<script>
 			var link = document.createElement( 'link' );
@@ -51,6 +90,88 @@
 						</tr>
 					</table>
 					</p>
+				</section>
+				<section id="pipes">
+					<section>
+						<h3><i>So what is this Big Pipe thing?</i></h3>
+					</section>
+					<section>
+						<h3><i>Oh, I know! It is this:</i></h3>
+					</section>
+					<section>
+						<figure>
+							<img src="src/images/pipes_1.jpg" height=550>
+							<figcaption><small>Photo by https://www.flickr.com/photos/uwehermann/3100832391/</small></figcaption>
+						</figure>
+					</section>
+					<section>
+						<h3>Nope!</h3>
+					</section>
+					<section>
+						<h3><i>But maybe this:</i></h3>
+					</section>
+					<section>
+						<figure>
+							<img src="src/images/pipes_2.jpg" height=550>
+							<figcaption><small>Photo by https://www.flickr.com/photos/12567713@N00/73589023/</small></figcaption>
+						</figure>
+					</section>
+					<section>
+						<h3><i>Or this!</i></h3>
+					</section>
+					<section>
+						<figure>
+							<img src="src/images/pipes_3.jpg" height=550>
+							<figcaption><small>Photo by https://www.flickr.com/photos/12567713@N00/73589023/</small></figcaption>
+						</figure>
+					</section>
+					<section>
+						<h3>Not really ...</h3>
+					</section>
+					<section>
+						<h3><i>I know! I know!</i></h3>
+					</section>
+					<section>
+						<h3><i>It is the pipe of a steam boat!</i></h3>
+					</section>
+					<section>
+						<figure>
+							<img src="src/images/pipes_4.jpg" height=550>
+							<figcaption><small>Photo by Harvey Henkelmann (https://commons.wikimedia.org/wiki/File:LeslieS5T.jpg)</small></figcaption>
+						</figure>
+					</section>
+					<section>
+						<h3>Uhm ... No!</h3>
+					</section>
+					<section>
+						<h3><i>But this time I am sure.</i></h3>
+					</section>
+					<section>
+						<h3><i>I watched that interview with Fabian Franz!</i></h3>
+					</section>
+					<section>
+						<h3><i>It is ...</i></h3>
+					</section>
+					<section>
+						<h3><i>Gandalfs Big Pipe!</i></h3>
+						<figure>
+							<img src="src/images/big-pipe-wood.jpg" height=550>
+							<figcaption><small>Photo by http://www.lignovus.com/gandalf/</small></figcaption>
+						</figure>
+					</section>
+					<section>
+						<h3>Drops of Drupal</h3>
+						<div class="container" style="height: 500px; background: black; overflow: hidden;">
+							<img src="src/images/druplicon-small.png" height=100 class="druplicon-slow" />
+						</div>
+					</section>
+					<section>
+						<h3>BigPipe of Drupal</h3>
+						<div class="container" style="height: 500px; background: black; overflow: hidden;">
+							<img src="src/images/druplicon-small.png" height=80 class="druplicon-fast-1" style="translate(0px, -50px);"/>
+							<img src="src/images/druplicon-small.png" height=50 class="druplicon-fast-2" style="translate(0px, -100px);"/>
+						</div>
+					</section>
 				</section>
 				
 				<section id="overview">
