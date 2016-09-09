@@ -245,7 +245,7 @@
 						<h2>0. Uncached/regular </h2>
 						<p><em>Drupal needs to lots of things before replying</em></p>
 						<hr>
-						<p>TTFB, TTAP, TTI: typically 100s of ms (~ back end)</p>
+						<p>TTFB, TTAP, TTI: typically high 100s of ms (~ back end)</p>
 					</section>
 					<section id="intro--comparing--page-cache">
 						<h2>1. Page cache</h2>
@@ -254,7 +254,7 @@
 						<ul>
 							<li>TTFB: ms <small>(&lt;10 ms)</small></li>
 							<li>TTAP: low 10s of ms</li>
-							<li>TTI: 100s of ms <small>(~ front-end code)</small></li>
+							<li>TTI: low 100s of ms <small>(~ front-end code)</small></li>
 						</ul>
 						<hr>
 						<ul>
@@ -295,7 +295,7 @@
 						<hr>
 						<ul>
 							<li>For authenticated users <small>(personalized pages)</small></li>
-							<li>Candidate for Drupal 8.1 or 8.2</li>
+							<li>Ships with Drupal &gt;=8.1</li>
 						</ul>
 						<hr>
 						<small><a href="https://www.drupal.org/project/big_pipe">drupal.org/project/big_pipe</a></small>
@@ -468,7 +468,7 @@
 					</section>
 					<section id="code--cacheability--thought-process--3">
 						<h3>3.</h3>
-						<blockquote>Does the representation of the thing I'm rendering vary per combination of permissions, per URL, per interface language, per … something?</blockquote>
+						<blockquote>Does the representation of the thing I'm rendering vary by permissions, by URL, by interface language, by … something?</blockquote>
 						<p>↪︎ If "yes": <strong>cache contexts</strong>.</p>
 						<pre class="fragment" style="margin-top: 3em; width: 70%"><code class="php">$build['#cache']['contexts'][] = 'user.permissions';
 $build['#cache']['contexts'][] = 'url';
@@ -601,7 +601,8 @@ function current_temp_lazy_builder($country, $city) {
 						<p>RefreshLess</p>
 						<p><a href="https://www.drupal.org/project/refreshless">d.o/project/refreshless</a></p>
 						<hr>
-						<p>Turbolinks-but-better<br><small>(automatic, load only parts that change, uses cacheability metadata)</small></p>
+						<p>Turbolinks-but-better<br><small>(automatic, loads only parts that change)</small></p>
+						<p><small>Thanks to cacheability metadata!</small></p>
 					</section>
 					<section id="other--refreshless-video">
 						<video src="src/videos/Turbolinks PoC.mp4" controls height="525">
